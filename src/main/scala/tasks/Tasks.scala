@@ -106,3 +106,29 @@ object Tasks extends App:
   private def composeThree[A,B,C,D](f: C => D, g: B => C, h: A => B): A => D = x => compose_generic(f, compose_generic(g, h))(x)
 
   println(composeThree[Int, Int, String, String](_ + "!", _.toString, _ * 2)(3))
+
+  //----------------------TASK 7----------------------
+  println()
+  println("Task 7")
+  println()
+
+  private def power(base: Double, exponent: Int): Double = exponent match
+    case 0 => 1
+    case _ => base * power(base, exponent - 1)
+
+  println("Recursive:")
+  println(s"2^0 = ${power(2, 0)}")
+  println(s"2^10 = ${power(2, 10)}")
+  println()
+
+  private def powerTail(base: Double, exponent: Int): Double =
+    @annotation.tailrec
+    def _pow(base: Double, exp: Int, acc: Double): Double = exp match
+      case 0 => acc
+      case _ if exp > 0 => _pow(base, exp - 1, base * acc)
+
+    _pow(base, exponent, 1)
+
+  println("Tail recursion:")
+  println(s"2^0 = ${powerTail(2, 0)}")
+  println(s"2^10 = ${powerTail(2, 10)}")
