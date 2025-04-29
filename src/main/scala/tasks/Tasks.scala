@@ -66,3 +66,21 @@ object Tasks extends App:
   println("Generic:")
   println(s": ${notEmptyGeneric("")}")
   println(s"$foo: ${notEmptyGeneric(foo)}")
+
+  //----------------------TASK 4----------------------
+
+  //curried val
+  val p1: Double => Double => Double => Boolean =
+    x => y => z => (x <= y) && (y == z)
+
+  //not curried val
+  val p2: (Double, Double, Double) => Boolean =
+    (x, y, z) => (x <= y) && (y == z)
+
+  //curried def
+  def p3(x: Double)(y: Double)(z: Double): Boolean =
+    (x <= y) && (y == z)
+
+  //not curried def
+  def p4(x: Double, y: Double, z: Double): Boolean =
+    (x <= y) && (y == z)
