@@ -1,4 +1,4 @@
-package u02
+package tasks
 
 object Tasks extends App:
 
@@ -53,3 +53,16 @@ object Tasks extends App:
   println("Method:")
   println(s": ${notEmptyMethod("")}")
   println(s"$foo: ${notEmptyMethod(foo)}")
+
+  //----------------------TASK 3.c----------------------
+  println()
+  println("Task 3.c")
+  println()
+
+  private def neg_generic[X](predicate: X => Boolean): X => Boolean = x => !predicate(x)
+
+  private val notEmptyGeneric = neg_generic(empty)
+
+  println("Generic:")
+  println(s": ${notEmptyGeneric("")}")
+  println(s"$foo: ${notEmptyGeneric(foo)}")
