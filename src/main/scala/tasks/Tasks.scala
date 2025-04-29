@@ -84,3 +84,16 @@ object Tasks extends App:
   //not curried def
   def p4(x: Double, y: Double, z: Double): Boolean =
     (x <= y) && (y == z)
+
+  //----------------------TASK 5----------------------
+  println()
+  println("Task 5")
+  println()
+
+  private def compose(f: Int => Int, g: Int => Int): Int => Int = x => f(g(x))
+  private def compose_generic[A, B, C](f: A => B, g: C => A): C => B = x => f(g(x))
+
+  private val n = 5
+
+  println(s"f(g($n)) = ${compose(_ - 1, _ * 2)(n)}")
+  println(s"f(g($n)) = ${compose_generic[Int, Int, Int](_ - 1, _ * 2)(n)}")
