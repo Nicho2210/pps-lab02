@@ -132,3 +132,18 @@ object Tasks extends App:
   println("Tail recursion:")
   println(s"2^0 = ${powerTail(2, 0)}")
   println(s"2^10 = ${powerTail(2, 10)}")
+
+  //----------------------TASK 8----------------------
+  println()
+  println("Task 8")
+  println()
+
+  private def reverseNumber(n: Int): Int =
+    @annotation.tailrec
+    def _reverse(n: Int, res: Int): Int = n match {
+      case n if n / 10 < 1 => res * 10 + n
+      case _ => _reverse(n / 10, res * 10 + n % 10)
+    }
+    _reverse(n, 0)
+
+  println(s"12345 => ${reverseNumber(12345)}")
