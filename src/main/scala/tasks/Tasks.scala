@@ -3,31 +3,18 @@ package tasks
 object Tasks extends App:
 
   //----------------------TASK 3.a----------------------
-  println("Task 3.a")
-  println()
 
   //function literal
-  private val positive_lambda: Int => String = {
+  val positive_lambda: Int => String = {
     case x if x >= 0 => "positive"
     case _ => "negative"
   }
 
   //method syntax
-  private def positive_method(x: Int): String = x match {
+  def positive_method(x: Int): String = x match {
     case x if x >= 0 => "positive"
     case _ => "negative"
   }
-
-  //prints
-  private val n_positive = 5
-  private val n_negative = -5
-  println("Lambda:")
-  println(s"$n_positive: ${positive_lambda(n_positive)}")
-  println(s"$n_negative: ${positive_lambda(n_negative)}")
-  println()
-  println("Method:")
-  println(s"$n_positive: ${positive_method(n_positive)}")
-  println(s"$n_negative: ${positive_method(n_negative)}")
 
   //----------------------TASK 3.b----------------------
   println()
@@ -147,3 +134,8 @@ object Tasks extends App:
     _reverse(n, 0)
 
   println(s"12345 => ${reverseNumber(12345)}")
+
+  //----------------------TASK 9----------------------
+  println()
+  println("Task 9")
+  println()
