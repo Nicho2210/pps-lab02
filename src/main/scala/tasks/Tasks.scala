@@ -63,22 +63,16 @@ object Tasks extends App:
     (x <= y) && (y == z)
 
   //----------------------TASK 5----------------------
-  private def compose(f: Int => Int, g: Int => Int): Int => Int = x => f(g(x))
-  private def compose_generic[A, B, C](f: A => B, g: C => A): C => B = x => f(g(x))
 
-  private val n = 5
+  def compose2Int(f: Int => Int, g: Int => Int): Int => Int =
+    x => f(g(x))
 
-  println(s"f(g($n)) = ${compose(_ - 1, _ * 2)(n)}")
-  println(s"f(g($n)) = ${compose_generic[Int, Int, Int](_ - 1, _ * 2)(n)}")
+  def compose2Generic[A, B, C](f: A => B, g: C => A): C => B =
+    x => f(g(x))
 
   //----------------------TASK 6----------------------
-  println()
-  println("Task 6")
-  println()
 
-  private def composeThree[A,B,C,D](f: C => D, g: B => C, h: A => B): A => D = x => compose_generic(f, compose_generic(g, h))(x)
-
-  println(composeThree[Int, Int, String, String](_ + "!", _.toString, _ * 2)(3))
+  def compose3Generic[A, B, C, D](f: C => D, g: B => C, h: A => B): A => D = x => compose2Generic(f, compose2Generic(g, h))(x)
 
   //----------------------TASK 7----------------------
   println()

@@ -53,3 +53,10 @@ class tasksTest:
     assertTrue(p4(2.0, 2.7, 2.7))
     assertFalse(p4(8.1, 2.4, 2.4))
     assertFalse(p4(6.0, 8.2, 3.9))
+    
+  @Test def task_5(): Unit =
+    assertEquals(9, compose2Int(_ - 1, _ * 2)(5))
+    assertEquals(9, compose2Generic[Int, Int, Int](_ - 1, _ * 2)(5))
+    
+  @Test def task_6(): Unit =
+    assertEquals("6!", compose3Generic[Int, Int, String, String](_ + "!", _.toString, _ * 2)(3))
