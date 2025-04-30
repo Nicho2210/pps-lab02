@@ -76,3 +76,28 @@ class tasksTest:
   @Test def task_8(): Unit =
     assertEquals(987654321, reverseNumber(123456789))
     assertEquals(1, reverseNumber(100000))
+
+  @Test def task_9(): Unit =
+    // simple expression
+    val expr1 = Expr.Literal(7)
+    assertEquals(7, Expr.evaluate(expr1))
+    assertEquals("7", Expr.show(expr1))
+    // addition
+    val expr2 = Expr.Add(Expr.Literal(4), Expr.Literal(3))
+    assertEquals(7, Expr.evaluate(expr2))
+    assertEquals("(4 + 3)", Expr.show(expr2))
+    // multiplication
+    val expr3 = Expr.Multiply(Expr.Literal(5), Expr.Literal(6))
+    assertEquals(30, Expr.evaluate(expr3))
+    assertEquals("(5 * 6)", Expr.show(expr3))
+    // complicated expression
+    val expr4 = Expr.Multiply(Expr.Add(Expr.Literal(3), Expr.Literal(2)), Expr.Literal(4))
+    assertEquals(20, Expr.evaluate(expr4))
+    assertEquals("((3 + 2) * 4)", Expr.show(expr4))
+    // nested expression
+    val expr5 = Expr.Add(
+      Expr.Multiply(Expr.Literal(2), Expr.Literal(3)),
+      Expr.Add(Expr.Literal(1), Expr.Literal(4))
+    )
+    assertEquals(11, Expr.evaluate(expr5))
+    assertEquals("((2 * 3) + (1 + 4))", Expr.show(expr5))

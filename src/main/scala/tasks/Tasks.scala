@@ -99,6 +99,18 @@ object Tasks extends App:
     _reverse(n, 0)
 
   //----------------------TASK 9----------------------
-  println()
-  println("Task 9")
-  println()
+  enum Expr:
+    case Literal(constant: Int)
+    case Add(subExpr1: Expr, subExpr2: Expr)
+    case Multiply(subExpr1: Expr, subExpr2: Expr)
+
+  object Expr:
+    def evaluate(expr: Expr): Int = expr match
+      case Literal(constant) => constant
+      case Add(subExpr1, subExpr2) => evaluate(subExpr1) + evaluate(subExpr2)
+      case Multiply(subExpr1, subExpr2) => evaluate(subExpr1) * evaluate(subExpr2)
+
+    def show(expr: Expr): String = expr match
+      case Literal(constant) => constant.toString
+      case Add(subExpr1, subExpr2) => "(" + show(subExpr1) + " + " + show(subExpr2) + ")"
+      case Multiply(subExpr1, subExpr2) => "(" + show(subExpr1) + " * " + show(subExpr2) + ")"
