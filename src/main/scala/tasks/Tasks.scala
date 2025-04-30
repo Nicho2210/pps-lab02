@@ -67,7 +67,7 @@ object Tasks extends App:
   def compose2Int(f: Int => Int, g: Int => Int): Int => Int =
     x => f(g(x))
 
-  def compose2Generic[A, B, C](f: A => B, g: C => A): C => B =
+  def compose2Generic[A, B, C](f: B => C, g: A => B): A => C =
     x => f(g(x))
 
   //----------------------TASK 6----------------------
@@ -75,30 +75,18 @@ object Tasks extends App:
   def compose3Generic[A, B, C, D](f: C => D, g: B => C, h: A => B): A => D = x => compose2Generic(f, compose2Generic(g, h))(x)
 
   //----------------------TASK 7----------------------
-  println()
-  println("Task 7")
-  println()
 
-  private def power(base: Double, exponent: Int): Double = exponent match
+  def powerRecursive(base: Double, exponent: Int): Double = exponent match
     case 0 => 1
-    case _ => base * power(base, exponent - 1)
+    case _ => base * powerRecursive(base, exponent - 1)
 
-  println("Recursive:")
-  println(s"2^0 = ${power(2, 0)}")
-  println(s"2^10 = ${power(2, 10)}")
-  println()
-
-  private def powerTail(base: Double, exponent: Int): Double =
+  def powerTail(base: Double, exponent: Int): Double =
     @annotation.tailrec
     def _pow(base: Double, exp: Int, acc: Double): Double = exp match
       case 0 => acc
       case _ if exp > 0 => _pow(base, exp - 1, base * acc)
 
     _pow(base, exponent, 1)
-
-  println("Tail recursion:")
-  println(s"2^0 = ${powerTail(2, 0)}")
-  println(s"2^10 = ${powerTail(2, 10)}")
 
   //----------------------TASK 8----------------------
   println()

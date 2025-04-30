@@ -53,10 +53,23 @@ class tasksTest:
     assertTrue(p4(2.0, 2.7, 2.7))
     assertFalse(p4(8.1, 2.4, 2.4))
     assertFalse(p4(6.0, 8.2, 3.9))
-    
+
   @Test def task_5(): Unit =
     assertEquals(9, compose2Int(_ - 1, _ * 2)(5))
     assertEquals(9, compose2Generic[Int, Int, Int](_ - 1, _ * 2)(5))
-    
+    assertEquals("T", compose2Generic[Int, Boolean, String](if _ then "T" else "F", _ > 2)(5))
+    assertEquals("F", compose2Generic[Int, Boolean, String](if _ then "T" else "F", _ > 2)(1))
+
   @Test def task_6(): Unit =
     assertEquals("6!", compose3Generic[Int, Int, String, String](_ + "!", _.toString, _ * 2)(3))
+
+  @Test def task_7(): Unit =
+    // power without tail rec
+    assertEquals(1, powerRecursive(7, 0), 0.000)
+    assertEquals(1024, powerRecursive(2, 10), 0.000)
+    assertEquals(10, powerRecursive(10, 1), 0.000)
+    //power with tail rec
+    assertEquals(1, powerTail(7, 0), 0.000)
+    assertEquals(1024, powerTail(2, 10), 0.000)
+    assertEquals(10, powerTail(10, 1), 0.000)
+    
