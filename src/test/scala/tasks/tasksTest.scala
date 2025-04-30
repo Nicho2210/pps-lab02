@@ -72,4 +72,7 @@ class tasksTest:
     assertEquals(1, powerTail(7, 0), 0.000)
     assertEquals(1024, powerTail(2, 10), 0.000)
     assertEquals(10, powerTail(10, 1), 0.000)
-    
+
+  @Test def task_8(): Unit =
+    assertEquals(987654321, reverseNumber(123456789))
+    assertEquals(1, reverseNumber(100000))
