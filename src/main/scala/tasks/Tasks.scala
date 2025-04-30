@@ -4,56 +4,38 @@ object Tasks extends App:
 
   //----------------------TASK 3.a----------------------
 
-  //function literal
-  val positive_lambda: Int => String = {
+  val positiveLambda: Int => String = {
     case x if x >= 0 => "positive"
     case _ => "negative"
   }
 
-  //method syntax
-  def positive_method(x: Int): String = x match {
+  def positiveMethod(x: Int): String = x match {
     case x if x >= 0 => "positive"
     case _ => "negative"
   }
 
   //----------------------TASK 3.b----------------------
-  println()
-  println("Task 3.b")
-  println()
 
-  private val neg_lambda: (String => Boolean) => String => Boolean = predicate => s => !predicate(s)
-  private def neg_method(predicate: String => Boolean) = (s: String) => !predicate(s)
+  private val negLambda: (String => Boolean) => String => Boolean = predicate => s => !predicate(s)
+  private def negMethod(predicate: String => Boolean) = (s: String) => !predicate(s)
 
   private val empty: String => Boolean = _ == ""
-  private val notEmptyLamba = neg_lambda(empty)
-  private val notEmptyMethod = neg_method(empty)
 
-  private val foo = "foo"
-
-  println(s": ${empty("")}")
-  println(s"$foo: ${empty(foo)}")
-  println()
-  println("Lambda:")
-  println(s": ${notEmptyLamba("")}")
-  println(s"$foo: ${notEmptyLamba(foo)}")
-  println()
-  println("Method:")
-  println(s": ${notEmptyMethod("")}")
-  println(s"$foo: ${notEmptyMethod(foo)}")
+  val notEmptyLamba = negLambda(empty)
+  val notEmptyMethod = negMethod(empty)
 
   //----------------------TASK 3.c----------------------
-  println()
-  println("Task 3.c")
-  println()
-
-  private def neg_generic[X](predicate: X => Boolean): X => Boolean = x => !predicate(x)
-
-  private val notEmptyGeneric = neg_generic(empty)
-
-  println("Generic:")
-  println(s": ${notEmptyGeneric("")}")
-  println(s"$foo: ${notEmptyGeneric(foo)}")
-
+  private def negGeneric[X](predicate: X => Boolean): X => Boolean = x => !predicate(x)
+  
+  //For testing
+  val notEmptyGeneric = negGeneric(empty)
+  
+  private val isPositive: Int => Boolean = _ > 0
+  val isNotPositive = negGeneric(isPositive)
+  
+  private val isTrue: Boolean => Boolean = identity
+  val isFalse = negGeneric(isTrue)
+  
   //----------------------TASK 4----------------------
 
   //curried val
