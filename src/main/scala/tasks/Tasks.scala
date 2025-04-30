@@ -4,11 +4,13 @@ object Tasks extends App:
 
   //----------------------TASK 3.a----------------------
 
+  // val assigned to function literal
   val positiveLambda: Int => String = {
     case x if x >= 0 => "positive"
     case _ => "negative"
   }
 
+  // method syntax
   def positiveMethod(x: Int): String = x match {
     case x if x >= 0 => "positive"
     case _ => "negative"
@@ -16,49 +18,51 @@ object Tasks extends App:
 
   //----------------------TASK 3.b----------------------
 
-  private val negLambda: (String => Boolean) => String => Boolean = predicate => s => !predicate(s)
-  private def negMethod(predicate: String => Boolean) = (s: String) => !predicate(s)
-
   private val empty: String => Boolean = _ == ""
 
+  // val lambda
+  private val negLambda: (String => Boolean) => String => Boolean =
+    predicate => s => !predicate(s)
+
   val notEmptyLamba = negLambda(empty)
+
+  // method syntax
+  private def negMethod(predicate: String => Boolean) =
+    (s: String) => !predicate(s)
+
   val notEmptyMethod = negMethod(empty)
 
   //----------------------TASK 3.c----------------------
   private def negGeneric[X](predicate: X => Boolean): X => Boolean = x => !predicate(x)
-  
-  //For testing
+
+  // for testing
   val notEmptyGeneric = negGeneric(empty)
-  
+
   private val isPositive: Int => Boolean = _ > 0
   val isNotPositive = negGeneric(isPositive)
-  
+
   private val isTrue: Boolean => Boolean = identity
   val isFalse = negGeneric(isTrue)
-  
+
   //----------------------TASK 4----------------------
 
-  //curried val
+  // curried val
   val p1: Double => Double => Double => Boolean =
     x => y => z => (x <= y) && (y == z)
 
-  //not curried val
+  // not curried val
   val p2: (Double, Double, Double) => Boolean =
     (x, y, z) => (x <= y) && (y == z)
 
-  //curried def
+  // curried def
   def p3(x: Double)(y: Double)(z: Double): Boolean =
     (x <= y) && (y == z)
 
-  //not curried def
+  // not curried def
   def p4(x: Double, y: Double, z: Double): Boolean =
     (x <= y) && (y == z)
 
   //----------------------TASK 5----------------------
-  println()
-  println("Task 5")
-  println()
-
   private def compose(f: Int => Int, g: Int => Int): Int => Int = x => f(g(x))
   private def compose_generic[A, B, C](f: A => B, g: C => A): C => B = x => f(g(x))
 

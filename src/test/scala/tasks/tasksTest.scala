@@ -7,24 +7,49 @@ class tasksTest:
   import Tasks.*
 
   @Test def task_3a(): Unit =
+    // val assigned to function literal
     assertEquals("positive", positiveLambda(10))
     assertEquals("positive", positiveLambda(0))
     assertEquals("negative", positiveLambda(-10))
+    // method syntax
     assertEquals("positive", positiveMethod(10))
     assertEquals("positive", positiveMethod(0))
     assertEquals("negative", positiveMethod(-10))
 
   @Test def task_3b(): Unit =
+    // val lambda
     assertTrue(notEmptyLamba("foo"))
     assertFalse(notEmptyLamba(""))
+    // method syntax
     assertTrue(notEmptyMethod("foo"))
     assertFalse(notEmptyMethod(""))
 
   @Test def task_3c(): Unit =
+    //String => Boolean
     assertTrue(notEmptyGeneric("foo"))
     assertFalse(notEmptyGeneric(""))
+    // Int => Boolean
     assertTrue(isNotPositive(-10))
     assertTrue(isNotPositive(0))
     assertFalse(isNotPositive(10))
+    // Boolean => Boolean
     assertTrue(isFalse(false))
     assertFalse(isFalse(true))
+
+  @Test def task_4(): Unit =
+    // curried val
+    assertTrue(p1(2.0)(2.7)(2.7))
+    assertFalse(p1(8.1)(2.4)(2.4))
+    assertFalse(p1(6.0)(8.2)(3.9))
+    // not curried val
+    assertTrue(p2(2.0, 2.7, 2.7))
+    assertFalse(p2(8.1, 2.4, 2.4))
+    assertFalse(p2(6.0, 8.2, 3.9))
+    // curried def
+    assertTrue(p3(2.0)(2.7)(2.7))
+    assertFalse(p3(8.1)(2.4)(2.4))
+    assertFalse(p3(6.0)(8.2)(3.9))
+    // not curried def
+    assertTrue(p4(2.0, 2.7, 2.7))
+    assertFalse(p4(8.1, 2.4, 2.4))
+    assertFalse(p4(6.0, 8.2, 3.9))
